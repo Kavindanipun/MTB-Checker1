@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111111">
+<title>MTB Strict Verified Model Finder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="shell">
+  <header class="hero">
+    <div class="brand-mark">MTB</div>
+    <div>
+      <div class="strict-pill">● STRICT VERIFIED MODE</div>
+      <h1>Tempered Glass Model Finder</h1>
+      <p>Proof-first version: compatible matches are green only when the exact phone model is printed on one of your photographed real MTB stock packets.</p>
+    </div>
+  </header>
+
+  <div class="notice"><strong>Trust rule:</strong> Real packet label = verified. Exact stock item = in stock. MTB chart-only match = reference only, never an automatic “take this glass” result. If two different packet photos disagree, the system blocks the model instead of guessing.</div>
+
+  <section class="search-panel">
+    <div class="search-row">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input id="modelSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Example: Samsung A03, Redmi Note 10 5G, OPPO A52...">
+        <button id="clearBtn" class="clear-btn" type="button">×</button>
+      </div>
+      <button id="searchBtn" class="primary-btn" type="button">Find Verified Stock Glass</button>
+      <button id="compatibleBtn" class="secondary-action-btn" type="button">Verified Compatible Models</button>
+    </div>
+    <div id="suggestions" class="suggestions" hidden></div>
+    <div class="quick-examples">
+      <button data-query="Samsung A03">Samsung A03</button>
+      <button data-query="Redmi Note 10 5G">Note 10 5G</button>
+      <button data-query="Samsung A32">Samsung A32</button>
+      <button data-query="OPPO A52">OPPO A52</button>
+      <button data-query="Samsung A20s">A20s conflict test</button>
+    </div>
+  </section>
+
+  <section id="resultSection" class="result-section" aria-live="polite"></section>
+
+  <section class="audit-panel">
+    <div class="audit-head">
+      <div><h2>Verification Audit</h2><p>Automatic safety checks built from your photographed packet labels.</p></div>
+    </div>
+    <div class="audit-grid">
+      <div class="stat"><strong id="auditPacketGroups">0</strong><span>stock groups with real packet proof</span></div>
+      <div class="stat"><strong id="auditVerifiedModels">0</strong><span>unique packet-printed searchable models</span></div>
+      <div class="stat"><strong id="auditConflicts">0</strong><span>cross-packet conflicts automatically blocked</span></div>
+    </div>
+    <div id="auditConflictBox" class="audit-conflict"></div>
+  </section>
+
+  <section class="inventory-panel">
+    <div class="inventory-head">
+      <div><h2>Current Stock</h2><p><strong id="stockCount">0</strong> stock labels loaded from your original stock list.</p></div>
+      <button id="toggleInventory" class="secondary-btn" type="button">Show Stock List</button>
+    </div>
+    <div id="inventoryList" class="inventory-list" hidden></div>
+  </section>
+
+  <footer>
+    “Packet verified” means the model name is visibly printed on a real stock packet photo you supplied. It does not claim an independent laboratory fit test or override a manufacturer printing error. This version deliberately fails closed when evidence is missing or contradictory.
+  </footer>
+</main>
+
+<div id="compatModal" class="modal-backdrop" hidden>
+  <section class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div><div class="modal-kicker">REAL PACKET ONLY</div><h2 id="compatModalTitle">Packet-Verified Models</h2><p id="compatModalSubtitle"></p></div>
+      <button id="closeCompatModal" class="modal-close" type="button">×</button>
+    </div>
+    <div id="compatModalBody" class="modal-body"></div>
+  </section>
+</div>
+
+<div id="imageOverlay" class="image-overlay" hidden>
+  <button id="closeImageOverlay" type="button">×</button>
+  <img id="overlayImage" alt="Real MTB packet proof">
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
